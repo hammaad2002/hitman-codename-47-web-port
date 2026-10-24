@@ -1,6 +1,6 @@
 # Hitman: Codename 47 web port: architecture contract
 
-Fork of the sibling ports (`/home/hammad/repos/bella-sara-team-action-web`, `/home/hammad/repos/shrek2-team-action-web`, read-only references). Pipeline: ISO -> Inno Setup installer parser -> files in OPFS -> static x86->wasm recompiler -> C++/Emscripten runtime (Win32 HLE, OpenGL 1.1 -> WebGL2, DirectSound) -> Vite page.
+Fork of the sibling ports (the Bella Sara and Shrek 2 web ports, read-only references). Pipeline: ISO -> Inno Setup installer parser -> files in OPFS -> static x86->wasm recompiler -> C++/Emscripten runtime (Win32 HLE, OpenGL 1.1 -> WebGL2, DirectSound) -> Vite page.
 
 Game files (read-only, never copy into tracked dirs): `work/game/app/` (GOG build 17919, extracted with innoextract).
 
