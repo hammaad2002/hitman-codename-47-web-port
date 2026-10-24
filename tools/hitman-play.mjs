@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Scripted play session (local development): node tools/hitman-play.mjs --port 5191 --script "wait:6000,click:770:748,shot:a,key:Enter,wait:600,shot:b"
-// Steps: wait:<frames>, click:<x>:<y>, move:<x>:<y>, key:<Code>, shot:<name> (screenshot to work/play/<name>.png), settle:<ms>.
+// Steps: wait:<frames>, click:<x>:<y>, move:<x>:<y>, key:<Code>, shot:<name> (screenshot to work/play/<name>.png), settle:<ms>, hold:<Code>:<ms>.
 import { mkdirSync } from "node:fs";
 import { browserArgs, launch } from "./browsers.mjs";
 
@@ -41,6 +41,10 @@ for (const s of steps) {
   } else if (k === "key") {
     await page.keyboard.down(a);
     await page.waitForTimeout(120);
+    await page.keyboard.up(a);
+  } else if (k === "hold") {
+    await page.keyboard.down(a);
+    await page.waitForTimeout(Number(b));
     await page.keyboard.up(a);
   } else if (k === "type") {
     await page.keyboard.type(a, { delay: 150 });
