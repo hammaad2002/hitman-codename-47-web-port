@@ -53,6 +53,7 @@ interface DevState {
   captures: Record<number, string>;
   log: string[];
   state: string;
+  audioPeak?: number; // max |sample| seen on the output (tests)
 }
 const dev: DevState = { frames: 0, captures: {}, log: [], state: "init" };
 (window as unknown as { __bella: DevState }).__bella = dev;
@@ -308,6 +309,13 @@ async function play() {
     processorOptions: { buffer: engine.HEAPU8.buffer, header },
   });
   node.connect(audio.destination);
+  const tap = audio.createAnalyser();
+  const buf = new Float32Array(tap.fftSize);
+  node.connect(tap);
+  setInterval(() => {
+    tap.getFloatTimeDomainData(buf);
+    for (const v of buf) dev.audioPeak = Math.max(dev.audioPeak ?? 0, Math.abs(v));
+  }, 200);
   void audio.resume();
 
   if (game) {

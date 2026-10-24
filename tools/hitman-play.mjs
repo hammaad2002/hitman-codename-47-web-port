@@ -59,5 +59,5 @@ for (const s of steps) {
   }
   await flush();
 }
-console.log("frames:", await frames());
+console.log("frames:", await frames(), "audioPeak:", await page.evaluate(() => window.__bella?.audioPeak));
 await ctx.close();
