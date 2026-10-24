@@ -1,4 +1,5 @@
 // Pure-logic tests for the GL1 executor (no GL context): build with -DGL1_NO_GL.
+// Build: g++ -std=c++17 -DGL1_NO_GL -Iruntime/src runtime/tests/gl1_exec_test.cpp runtime/src/gles/gl1_exec.cpp -o /tmp/gl1t && /tmp/gl1t
 #include <cstdio>
 #include <cstdlib>
 #include <vector>

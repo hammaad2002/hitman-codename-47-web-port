@@ -3,7 +3,7 @@ Differential conformance test: run each snippet in Unicorn (reference CPU) and i
 recompiled native library with identical inputs, and compare registers, defined flags,
 x87 results and touched memory.
 
-  .venv/bin/python -I tests/conformance/run.py <game.exe> work/conf [vectors-per-snippet] [filter]
+  work/venv-conf/bin/python -I tests/conformance/run.py <pe.dll|exe> work/conf-snippets [vectors-per-snippet] [filter]
 """
 import ctypes
 import json

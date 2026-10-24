@@ -2,7 +2,7 @@
  * Builds a synthetic PE containing one tiny test function per distinct instruction form used by
  * the game, plus a JSON manifest, for differential testing (Unicorn vs. recompiled code).
  *
- *   node tests/conformance/snippets.ts <game.exe> <ghidra-hints.json> <outdir>
+ *   node tests/conformance/snippets.ts <pe.dll|exe> <outdir>
  *
  * Integer snippet:   push [IN_FLAGS]; popfd; <insn>; pushfd; pop [OUT_FLAGS]; ret
  * x87 snippet:       fninit; fldcw [IN_FCW]; fld qword [IN_F2]; fld [IN_F1]; fld [IN_F0]; <insn>;
@@ -11,7 +11,6 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { Program } from "../../recomp/src/cfg.ts";
-import { loadGhidraHints } from "../../recomp/src/hints.ts";
 import { PeImage } from "../../recomp/src/pe.ts";
 import { Code, FlowControl, Mnemonic, Register, type Insn } from "../../recomp/src/x86.ts";
 
@@ -28,10 +27,13 @@ export const IO_IN_MM = IO + 0x180; // 8 x 8 bytes, seeded into mm0-7
 export const IO_OUT_XMM = IO + 0x200; // 8 x 16 bytes, xmm0-7 after the instruction
 export const IO_OUT_MM = IO + 0x280; // 8 x 8 bytes, mm0-7 after the instruction
 
-const [exePath, hintsPath, outDir] = process.argv.slice(2);
-const pe = new PeImage(new Uint8Array(readFileSync(exePath)));
-const hints = hintsPath && hintsPath !== "-" ? await loadGhidraHints(hintsPath) : {};
-const prog = new Program(pe, hints);
+const [pePath, outDir] = process.argv.slice(2);
+if (!pePath || !outDir) {
+  console.error("usage: node tests/conformance/snippets.ts <pe.dll|exe> <outdir>");
+  process.exit(2);
+}
+const pe = new PeImage(new Uint8Array(readFileSync(pePath)));
+const prog = new Program(pe, {});
 prog.discover({ speculate: true });
 
 const X87_PREFIX = 0xd8; // escape opcodes d8..df

@@ -1,18 +1,21 @@
 /**
  * Lists game functions whose whole call tree avoids imports and indirect control flow, so they
  * can be executed identically in Unicorn and in recompiled code.
- *   node tests/conformance/purefuncs.ts <game.exe> <ghidra-hints.json> <out.json>
+ *   node tests/conformance/purefuncs.ts <pe.dll|exe> <out.json>
  */
 import { readFileSync, writeFileSync } from "node:fs";
 import { Program } from "../../recomp/src/cfg.ts";
-import { loadGhidraHints } from "../../recomp/src/hints.ts";
 import { PeImage } from "../../recomp/src/pe.ts";
 import { Mnemonic, Register } from "../../recomp/src/x86.ts";
 
-const [exePath, hintsPath, outPath] = process.argv.slice(2);
-const pe = new PeImage(new Uint8Array(readFileSync(exePath)));
-const prog = new Program(pe, await loadGhidraHints(hintsPath));
-prog.discover();
+const [pePath, outPath] = process.argv.slice(2);
+if (!pePath || !outPath) {
+  console.error("usage: node tests/conformance/purefuncs.ts <pe.dll|exe> <out.json>");
+  process.exit(2);
+}
+const pe = new PeImage(new Uint8Array(readFileSync(pePath)));
+const prog = new Program(pe, {});
+prog.discover({ speculate: true });
 
 const localOk = new Map<number, boolean>();
 for (const f of prog.funcs.values()) {
