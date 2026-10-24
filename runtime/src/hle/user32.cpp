@@ -678,7 +678,8 @@ static bool key_or_mouse_down(uint32_t vk) {
   pump();
   if (vk == 1 || vk == 2 || vk == 4) return plat::mouse_button_down(vk == 1 ? 0 : vk == 2 ? 1 : 2);
   uint32_t sc = map_virtual_key(vk, 0);
-  return sc && sc < 256 && (plat::keyboard_state()[sc] & 0x80);
+  // extended keys (arrows, RCtrl...) are stored at scancode|0x80 by the platform
+  return sc && sc < 128 && ((plat::keyboard_state()[sc] | plat::keyboard_state()[sc | 0x80]) & 0x80);
 }
 
 HLE_STDCALL(kDll, GetAsyncKeyState, 1) { return key_or_mouse_down(arg(c, 0)) ? 0x8000u : 0; }

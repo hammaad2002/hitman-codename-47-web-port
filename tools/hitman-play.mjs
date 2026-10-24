@@ -42,6 +42,10 @@ for (const s of steps) {
     await page.keyboard.down(a);
     await page.waitForTimeout(120);
     await page.keyboard.up(a);
+  } else if (k === "down") {
+    await page.keyboard.down(a);
+  } else if (k === "up") {
+    await page.keyboard.up(a);
   } else if (k === "hold") {
     await page.keyboard.down(a);
     await page.waitForTimeout(Number(b));
