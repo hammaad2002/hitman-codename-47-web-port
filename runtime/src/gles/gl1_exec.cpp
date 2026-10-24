@@ -103,14 +103,21 @@ layout(location=1) in vec4 aColor;
 layout(location=2) in vec2 aUv;
 uniform mat4 uMv;
 uniform mat4 uProj;
+uniform int uShadeModel;   // 0 SMOOTH 1 FLAT
 out vec4 vColor;
 out vec2 vUv;
 out float vEyeZ;
+flat out vec4 vColorFlat;
+flat out vec2 vUvFlat;
+flat out float vEyeZFlat;
 void main() {
   vec4 eye = uMv * vec4(aPos, 1.0);
   vEyeZ = eye.z;
+  vEyeZFlat = eye.z;
   vColor = aColor;
+  vColorFlat = aColor;
   vUv = aUv;
+  vUvFlat = aUv;
   gl_Position = uProj * eye;
 })";
 
@@ -119,21 +126,27 @@ precision highp float;
 in vec4 vColor;
 in vec2 vUv;
 in float vEyeZ;
+flat in vec4 vColorFlat;
+flat in vec2 vUvFlat;
+flat in float vEyeZFlat;
 uniform sampler2D uTex;
-uniform int uTexEnv;     // 0 REPLACE 1 MODULATE 2 DECAL 3 BLEND
+uniform int uTexEnv;       // 0 REPLACE 1 MODULATE 2 DECAL 3 BLEND
 uniform int uHasTex;
-uniform int uAlphaFunc;  // 0 = off, else GL_NEVER..GL_ALWAYS - 0x200 + 1
+uniform int uAlphaFunc;    // 0 = off, else GL_NEVER..GL_ALWAYS - 0x200 + 1
 uniform float uAlphaRef;
-uniform int uFogMode;    // 0 off 1 LINEAR 2 EXP 3 EXP2
+uniform int uFogMode;      // 0 off 1 LINEAR 2 EXP 3 EXP2
 uniform float uFogStart;
 uniform float uFogEnd;
 uniform float uFogDensity;
 uniform vec4 uFogColor;
+uniform int uShadeModel;   // 0 SMOOTH 1 FLAT
 out vec4 oColor;
 void main() {
-  vec4 c = vColor;
+  vec4 c = uShadeModel == 1 ? vColorFlat : vColor;
+  vec2 uv = uShadeModel == 1 ? vUvFlat : vUv;
+  float eyeZ = uShadeModel == 1 ? vEyeZFlat : vEyeZ;
   if (uHasTex != 0) {
-    vec4 t = texture(uTex, vUv);
+    vec4 t = texture(uTex, uv);
     if (uTexEnv == 0) c = t;
     else if (uTexEnv == 1) c *= t;
     else if (uTexEnv == 2) c = vec4(mix(c.rgb, t.rgb, t.a), c.a);
@@ -151,7 +164,7 @@ void main() {
     if (!pass) discard;
   }
   if (uFogMode != 0) {
-    float d = abs(vEyeZ);
+    float d = abs(eyeZ);
     float f;
     if (uFogMode == 1) f = (uFogEnd - d) / max(uFogEnd - uFogStart, 1e-6);
     else if (uFogMode == 2) f = exp(-uFogDensity * d);
@@ -164,10 +177,11 @@ void main() {
 struct Tex {
   GLuint name = 0;
   uint32_t minFilter = 0x2703;  // GL default
+  bool hasLevel1 = false;
 };
 
 struct Uniforms {
-  GLint mv, proj, tex, texEnv, hasTex, alphaFunc, alphaRef, fogMode, fogStart, fogEnd, fogDensity, fogColor;
+  GLint mv, proj, tex, texEnv, hasTex, alphaFunc, alphaRef, fogMode, fogStart, fogEnd, fogDensity, fogColor, shadeModel;
 };
 
 struct State {
@@ -179,6 +193,7 @@ struct State {
   std::unordered_map<uint32_t, Tex> tex;
   GLuint bound = 0;  // guest id
   uint32_t texEnv = 1;
+  uint32_t shadeModel = 0x1D01;  // GL_SMOOTH default
   bool texture2d = false, alphaTest = false, fog = false;
   uint32_t alphaFunc = 0x207;
   float alphaRef = 0;
@@ -215,7 +230,7 @@ void init() {
   glDeleteShader(fs);
   auto L = [](const char* n) { return glGetUniformLocation(S.prog, n); };
   S.u = {L("uMv"), L("uProj"), L("uTex"), L("uTexEnv"), L("uHasTex"), L("uAlphaFunc"), L("uAlphaRef"),
-         L("uFogMode"), L("uFogStart"), L("uFogEnd"), L("uFogDensity"), L("uFogColor")};
+         L("uFogMode"), L("uFogStart"), L("uFogEnd"), L("uFogDensity"), L("uFogColor"), L("uShadeModel")};
 
   glGenVertexArrays(1, &S.vao);
   glBindVertexArray(S.vao);
@@ -298,6 +313,7 @@ void apply_uniforms(const float* mv, const float* proj, bool hasTex, bool fixedS
   glUniform1f(S.u.fogEnd, S.fogEnd);
   glUniform1f(S.u.fogDensity, S.fogDensity);
   glUniform4fv(S.u.fogColor, 1, S.fogColor);
+  glUniform1i(S.u.shadeModel, fixedState && S.shadeModel == 0x1D00 ? 1 : 0);
 }
 
 void draw(const uint32_t* p, uint32_t n) {
@@ -388,7 +404,9 @@ void op(const detail::Record& r) {
     case Op::DepthFunc: if (n >= 1 && p[0] >= 0x200 && p[0] <= 0x207) glDepthFunc(p[0]); break;
     case Op::DepthMask: if (n >= 1) glDepthMask(p[0] ? GL_TRUE : GL_FALSE); break;
     case Op::CullFace: if (n >= 1) glCullFace(p[0]); break;
-    case Op::ShadeModel: break;  // flat shading unsupported: GLES3 has no global switch; smooth is always used
+    case Op::ShadeModel:
+      if (n >= 1 && (p[0] == 0x1D00 || p[0] == 0x1D01)) S.shadeModel = p[0];
+      break;
     case Op::Viewport:
       if (n >= 4) {
         int w = (int)p[2], h = (int)p[3];
@@ -428,21 +446,31 @@ void op(const detail::Record& r) {
       }
       break;
     case Op::TexImage2D:
-      if (n >= 3 && S.bound && p[0] == 0 && n >= 3 + (size_t)p[1] * p[2]) {  // only level 0: mips are generated
-        Tex& t = cur_tex();
-        glBindTexture(GL_TEXTURE_2D, t.name);
-        glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, (int)p[1], (int)p[2], 0, GL_RGBA, GL_UNSIGNED_BYTE, p + 3);
-        if (detail::is_mipmap_filter(t.minFilter)) glGenerateMipmap(GL_TEXTURE_2D);
+      if (n >= 3 && S.bound) {
+        uint32_t level = p[0];
+        uint32_t w = p[1], h = p[2];
+        if (n >= 3 + (size_t)w * h) {
+          Tex& t = cur_tex();
+          glBindTexture(GL_TEXTURE_2D, t.name);
+          glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
+          glTexImage2D(GL_TEXTURE_2D, (GLint)level, GL_RGBA8, (int)w, (int)h, 0, GL_RGBA, GL_UNSIGNED_BYTE, p + 3);
+          if (level == 1) t.hasLevel1 = true;
+          if (detail::is_mipmap_filter(t.minFilter) && !t.hasLevel1) glGenerateMipmap(GL_TEXTURE_2D);
+        }
       }
       break;
     case Op::TexSubImage2D:
-      if (n >= 5 && S.bound && p[0] == 0 && n >= 5 + (size_t)p[3] * p[4]) {
-        Tex& t = cur_tex();
-        glBindTexture(GL_TEXTURE_2D, t.name);
-        glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
-        glTexSubImage2D(GL_TEXTURE_2D, 0, (int)p[1], (int)p[2], (int)p[3], (int)p[4], GL_RGBA, GL_UNSIGNED_BYTE, p + 5);
-        if (detail::is_mipmap_filter(t.minFilter)) glGenerateMipmap(GL_TEXTURE_2D);
+      if (n >= 5 && S.bound) {
+        uint32_t level = p[0];
+        uint32_t x = p[1], y = p[2], w = p[3], h = p[4];
+        if (n >= 5 + (size_t)w * h) {
+          Tex& t = cur_tex();
+          glBindTexture(GL_TEXTURE_2D, t.name);
+          glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
+          glTexSubImage2D(GL_TEXTURE_2D, (GLint)level, (int)x, (int)y, (int)w, (int)h, GL_RGBA, GL_UNSIGNED_BYTE, p + 5);
+          if (level == 1) t.hasLevel1 = true;
+          if (detail::is_mipmap_filter(t.minFilter) && !t.hasLevel1) glGenerateMipmap(GL_TEXTURE_2D);
+        }
       }
       break;
     case Op::DrawPixels: draw_pixels(p, n); break;
