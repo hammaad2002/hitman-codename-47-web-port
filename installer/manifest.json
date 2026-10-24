@@ -1,0 +1,1042 @@
+[
+{
+"dest": "EngineData.dll",
+"sha1": "ce1a2e32226c7ad5340890f50b0ff1de35343c6d"
+},
+{
+"dest": "Globals.dll",
+"sha1": "7d4582aa098d96dd8f811b6dc18fae8e2907ed73"
+},
+{
+"dest": "gsc.dll",
+"sha1": "ed66c43fdb41f0f26a51a0bc9513407f8f2c10be"
+},
+{
+"dest": "hitman.exe",
+"sha1": "614f1a4e11fe065e2f72e07a5949ed6f2f7e5cf2"
+},
+{
+"dest": "Hitman.ini",
+"sha1": "4c02d9890d3a880ed279fe20c5f1a04e8c1d5362"
+},
+{
+"dest": "HitmanDlc.dlc",
+"sha1": "d575366689703c92695f2c53e0a17d4a6b7da3f4"
+},
+{
+"dest": "Intro.zip",
+"sha1": "ee1f795dff49138fe585e7cf0c2f96f0b78ef955"
+},
+{
+"dest": "Locale.dll",
+"sha1": "ce7b349a2223d906e1925429b9edc5d7f230c4a9"
+},
+{
+"dest": "manual.pdf",
+"sha1": "bc43093c8cd00249add5249ff9bcddea97551845"
+},
+{
+"dest": "OptionsScreen.zip",
+"sha1": "d8d66d6da4c8e9c41001411965acf61ac2dccd39"
+},
+{
+"dest": "RenderOpenGL.dll",
+"sha1": "b8cf617600eb74e8c80fa8a54b4d98a7123703c9"
+},
+{
+"dest": "Repeat.ANM",
+"sha1": "f2c8470b30ee07f9b614cec64efa06f612b9dc41"
+},
+{
+"dest": "Repeat.DXT",
+"sha1": "bfea6fce502bcf55bb659c2764afede8bdda9230"
+},
+{
+"dest": "Repeat.PAL",
+"sha1": "5debe96831d5f006a4dd7cc8346e5e3867634b01"
+},
+{
+"dest": "Repeat.WAV",
+"sha1": "12e814142dc94aac224f8a78064ecbc210becd07"
+},
+{
+"dest": "Sound.dll",
+"sha1": "9e9f8a21b1e84f58e0256ca1a68a617c65610298"
+},
+{
+"dest": "system.dll",
+"sha1": "aaeeae1fb555fc3b75cc424327da54c13f488f5f"
+},
+{
+"dest": "xmlparse.dll",
+"sha1": "ddb9e9459f29aa7fa13868cf017cec48c563426d"
+},
+{
+"dest": "AllLevels/IngameDisplayItems.zip",
+"sha1": "d12301cfa7ddde1372a4a203873ed4d07c7f774c"
+},
+{
+"dest": "AllLevels/LapTopMain.zip",
+"sha1": "9dc547346239348b8efb85766fa5a35e40b1fcd9"
+},
+{
+"dest": "C0_Training/C0_1.zip",
+"sha1": "c91a322b3ab7f3f78757842e4b30cc1258b29376"
+},
+{
+"dest": "C0_Training/C0_1_Pre.zip",
+"sha1": "f9b2b01c60b677c4b35198999fa9273a96da1a58"
+},
+{
+"dest": "C1_HongKong/C1_1.zip",
+"sha1": "9776fa70481862ada5ccca9e0fb5ce98bfdb7699"
+},
+{
+"dest": "C1_HongKong/C1_1_Laptop.zip",
+"sha1": "d6265b5944196a197fe6bd8086dd183700dc61d6"
+},
+{
+"dest": "C1_HongKong/C1_1_Pre.zip",
+"sha1": "676217ad83598f345271cc6350542116fcd068fc"
+},
+{
+"dest": "C1_HongKong/C1_2.zip",
+"sha1": "f32aad474075fcbc8a2d3fad70062412bce2e81a"
+},
+{
+"dest": "C1_HongKong/C1_2_Laptop.zip",
+"sha1": "c686665f65018e60066409795269042d902baa63"
+},
+{
+"dest": "C1_HongKong/C1_2_Pre.zip",
+"sha1": "2c559472dd8cc21935e7c5625b987a5bcbf48fb5"
+},
+{
+"dest": "C1_HongKong/C1_3.zip",
+"sha1": "eb15f08fa446d417e4f92981d035387643971c8d"
+},
+{
+"dest": "C1_HongKong/C1_3_Laptop.zip",
+"sha1": "cd55cbddb83264e14c05545ede38f7eea45e40a7"
+},
+{
+"dest": "C1_HongKong/C1_3_Pre.zip",
+"sha1": "dde21b7d69436ca905cdb1b0c9d730a4377aa8ed"
+},
+{
+"dest": "C1_HongKong/C1_4.zip",
+"sha1": "36cfc63986659a762d5448070baa67d1eaaf076e"
+},
+{
+"dest": "C1_HongKong/C1_4_Laptop.zip",
+"sha1": "2bfade8730192cc422f8ba73a7a290347a86d746"
+},
+{
+"dest": "C1_HongKong/C1_4_Pre.zip",
+"sha1": "8f44c2639457c310826aea3257e8a8358e9b0944"
+},
+{
+"dest": "C2_RotterdamHarbor/C2_1.zip",
+"sha1": "fc2d321920f697df018c04df8d1a76c8b27607ce"
+},
+{
+"dest": "C2_RotterdamHarbor/C2_1_Laptop.zip",
+"sha1": "a75376c3182c4b7b4883891e49ae3003138f8b5d"
+},
+{
+"dest": "C2_RotterdamHarbor/C2_1_Pre.zip",
+"sha1": "20d99103fe6b657e1be2fc1a46c3b559274045ec"
+},
+{
+"dest": "C2_RotterdamHarbor/C2_2.zip",
+"sha1": "6d05aee24af0e1d6f8490b3afe7aac83d5764153"
+},
+{
+"dest": "C2_RotterdamHarbor/C2_2_Laptop.zip",
+"sha1": "45febc0019e0e5e4da578c8a5352f23fa2329d2b"
+},
+{
+"dest": "C2_RotterdamHarbor/C2_2_Pre.zip",
+"sha1": "067ded48ec6fc4137ef82c63fccce25cad0722a5"
+},
+{
+"dest": "C3_BudapestHotel/C3_1.zip",
+"sha1": "13fe190efb42a62859f61a70503499bf2a7d10da"
+},
+{
+"dest": "C3_BudapestHotel/C3_1_Laptop.zip",
+"sha1": "e73366a700854a6da237fd38c0a265646bdc27a5"
+},
+{
+"dest": "C3_BudapestHotel/C3_1_Pre.zip",
+"sha1": "e8bf9673c99af1db4ac718f3d76590ac4321fc0f"
+},
+{
+"dest": "C4_ColombianRainForest/C4_1.zip",
+"sha1": "cd4cd902d37d3666da40447656a3c957d1397796"
+},
+{
+"dest": "C4_ColombianRainForest/C4_1_Laptop.zip",
+"sha1": "c819cc21412bcbde927b056f3d8c3c8be5d58f0b"
+},
+{
+"dest": "C4_ColombianRainForest/C4_1_Pre.zip",
+"sha1": "4375309fc6db417e7f75108d970344d4d0acb25a"
+},
+{
+"dest": "C4_ColombianRainForest/C4_2.zip",
+"sha1": "b50ff723fd79847548dc71ef4399a0128c86a1ca"
+},
+{
+"dest": "C4_ColombianRainForest/C4_2_Laptop.zip",
+"sha1": "4238b6e48f14aaa86fa0d8a814a9fc8baca48f43"
+},
+{
+"dest": "C4_ColombianRainForest/C4_2_Pre.zip",
+"sha1": "04774a151a545d4e94298e58632f51b968c164bb"
+},
+{
+"dest": "C4_ColombianRainForest/C4_3.zip",
+"sha1": "5cf4dc597c95408566755b874ac347f9c0c807c1"
+},
+{
+"dest": "C4_ColombianRainForest/C4_3_Laptop.zip",
+"sha1": "fe53a8bd226cf69db8203000138c2f9e7df9e2b4"
+},
+{
+"dest": "C4_ColombianRainForest/C4_3_Pre.zip",
+"sha1": "8f03da73a85ad1d93c41536cb7dd4686cf1ea91d"
+},
+{
+"dest": "C5_Sanitarium/C5-2_The_End.zip",
+"sha1": "7876427fcbfd045edcb666f147de98daf58060a4"
+},
+{
+"dest": "C5_Sanitarium/C5_1.zip",
+"sha1": "2d9578256cceab0c48df1963d7224ccf795e1753"
+},
+{
+"dest": "C5_Sanitarium/C5_1_Elevators.zip",
+"sha1": "167c0c5adf5bd2e4033efe717f3daae24d1a4a58"
+},
+{
+"dest": "C5_Sanitarium/C5_1_LapTop.zip",
+"sha1": "ce4365735aa90f45a82b544ccc5c408265791c9a"
+},
+{
+"dest": "C5_Sanitarium/C5_1_Pre.zip",
+"sha1": "0e04d0b833300eb58b14f8115debd30f841957ef"
+},
+{
+"dest": "C5_Sanitarium/C5_2.zip",
+"sha1": "4f190bc4013ae194f2809e70fac3ab4b84d83ddb"
+},
+{
+"dest": "C5_Sanitarium/C5_2_Pre.zip",
+"sha1": "dd14accbed80c3281aee659d85eae817aafff465"
+},
+{
+"dest": "C5_Sanitarium/Guard_Call_Professor.zip",
+"sha1": "f273f0634096ddbb81f9d666df0e9e06c5ceb031"
+},
+{
+"dest": "Cutscenes/C1_HongKong/C1_1_HitmanArrive.zip",
+"sha1": "2127a2c28f0e4054bcc2a7cdd2ec8ba0ec78056d"
+},
+{
+"dest": "Cutscenes/FlashBacks/FlashBack1_4.zip",
+"sha1": "752a5f480240f0a41832a794ed346dc460b8892a"
+},
+{
+"dest": "Cutscenes/FlashBacks/FlashBack2_2.zip",
+"sha1": "a4824c93750c1d63190071c38e2517d3be20fb4b"
+},
+{
+"dest": "Cutscenes/FlashBacks/FlashBack3_1.zip",
+"sha1": "7b0708c69cfeb5f46aa2f6015b2a8a4455ba31a0"
+},
+{
+"dest": "Cutscenes/FlashBacks/FlashBack5_1.zip",
+"sha1": "59f80c881e07fae58455d35dbb60ba129d00460b"
+},
+{
+"dest": "Cutscenes/FlashBacks/FlashBacks.zip",
+"sha1": "77f1a148cc898c40dbe0e4c5b08480d05224c2aa"
+},
+{
+"dest": "Cutscenes/Intro/Intro.zip",
+"sha1": "ec13f36d49de2545b277bfde26301c693a5fb0ea"
+},
+{
+"dest": "Music/China/Fight.sgt",
+"sha1": "13a46f18dcab5828dd027c527db435d185ce866b"
+},
+{
+"dest": "Music/China/FightInstr.dls",
+"sha1": "180683831ff15ae77585af2656b040c0491bf06f"
+},
+{
+"dest": "Music/China/InsideHQ.sgt",
+"sha1": "4a54981a8507f195897358b7f61d773fd8a6cb83"
+},
+{
+"dest": "Music/China/Main.sgt",
+"sha1": "44b9361301efb41660139d36d68426a6f089a535"
+},
+{
+"dest": "Music/China/Main2.sgt",
+"sha1": "394c650e9e4d6cdbc5e45260ebe87be0722b36ec"
+},
+{
+"dest": "Music/China/MainInstr.dls",
+"sha1": "7897a00e58b987c348f68307e1000cba51c4046f"
+},
+{
+"dest": "Music/China/Movie1.sgt",
+"sha1": "2d3b43a00757324672842cd7fb8a0f4955ffbf03"
+},
+{
+"dest": "Music/China/Movie2.sgt",
+"sha1": "105fd020c717a2b46b1700cb0ff55afa0d330a9f"
+},
+{
+"dest": "Music/China/Scary.sgt",
+"sha1": "853d6448f5c97f396757d4a693a905fc72789bb7"
+},
+{
+"dest": "Music/China/Stealth.sgt",
+"sha1": "2c45d84a80c8b9da4ec75758892dbc1e1930a778"
+},
+{
+"dest": "Music/China/Style1.sty",
+"sha1": "00d46ec546669d18ee926d0d820265ef59c2e598"
+},
+{
+"dest": "Music/China/vssver.scc",
+"sha1": "cb7573617db4585ebc73394e4145a8dfb74fa31d"
+},
+{
+"dest": "Music/Columbia/DarkJungle.sgt",
+"sha1": "721d5b782422d7ec510a16957e2324ef562f74de"
+},
+{
+"dest": "Music/Columbia/Jungle.dls",
+"sha1": "5d734be1b28d460e878dfd134d8948e45bad3e2b"
+},
+{
+"dest": "Music/Columbia/Main.sgt",
+"sha1": "ab923cd04034435518df6e8f3b912c33fa3a44a7"
+},
+{
+"dest": "Music/Columbia/Style1.sty",
+"sha1": "1a7c8520521d77115de4a91a35e062c3478ec833"
+},
+{
+"dest": "Music/Columbia/Village.sgt",
+"sha1": "fc1c8da3a00fccfd074698ab3cbc69d05a5fa1b0"
+},
+{
+"dest": "Music/Columbia/vssver.scc",
+"sha1": "0e23a079a81b2df30bd302db2c605413ddce74a3"
+},
+{
+"dest": "Music/Holland/DLS Collection1.dls",
+"sha1": "d52f919d90ec65c3d4ea6c17439e4db009361b2b"
+},
+{
+"dest": "Music/Holland/InsideShip.sgt",
+"sha1": "77af9c8aaeef7aa7b8e1bda56c7874bfeb28193f"
+},
+{
+"dest": "Music/Holland/Main.sgt",
+"sha1": "3378626057dd74194f4fd932c818a3709df4fee3"
+},
+{
+"dest": "Music/Holland/StripClub.sgt",
+"sha1": "4b610eb5dda1927e99c5c6bb57159eeec99cec5c"
+},
+{
+"dest": "Music/Holland/Style1.sty",
+"sha1": "2452e16c0dbd26fec4164a3a611c96a0739c41b1"
+},
+{
+"dest": "Music/Holland/vssver.scc",
+"sha1": "19ac6e8d634c5f94a267c31636ffb30d3474dcb1"
+},
+{
+"dest": "Music/Hungary/DLS Collection1.dls",
+"sha1": "4ae547b689df5b065a29d364d71e52de8afd9942"
+},
+{
+"dest": "Music/Hungary/Elevator.sgt",
+"sha1": "4afb50d36f58937d5c2f5826d1c93de8f7a63972"
+},
+{
+"dest": "Music/Hungary/Fight.sgt",
+"sha1": "1c5bae4ba912fe411649410d4a361b7a57f938d3"
+},
+{
+"dest": "Music/Hungary/Main.sgt",
+"sha1": "92451ee28ec38d90d05aeaa7b848e9a024160db3"
+},
+{
+"dest": "Music/Hungary/Pool.sgt",
+"sha1": "5742480feb9772dd77de9d06ddd43e75bba598ee"
+},
+{
+"dest": "Music/Hungary/Scary.sgt",
+"sha1": "51858d45e77ee335792463f0bd6fc942da79e228"
+},
+{
+"dest": "Music/Hungary/Style1.sty",
+"sha1": "77ec8f1a11568d981f0812f4b6cf342ba6662a37"
+},
+{
+"dest": "Music/Hungary/vssver.scc",
+"sha1": "134e6398aef7ae8ca0016cd4aadc26b7ad45b7a8"
+},
+{
+"dest": "Music/Low/China/Fight.sgt",
+"sha1": "9d99e3ebbfdb3fc85ed455e31f033f9d61d754ae"
+},
+{
+"dest": "Music/Low/China/FightInstr.dls",
+"sha1": "90b246e3df4dfe7cdbfd3ee99192194d30adb62c"
+},
+{
+"dest": "Music/Low/China/InsideHQ.sgt",
+"sha1": "43b00bc624f47247148c0edbee6607c68d2fdf7f"
+},
+{
+"dest": "Music/Low/China/MainInstr.dls",
+"sha1": "6414e8d0b322790f97d835bed4f06876fa134ea2"
+},
+{
+"dest": "Music/Low/China/Movie1.sgt",
+"sha1": "f167b441f43eb76f235d602f9c8ff67ae8dddc0b"
+},
+{
+"dest": "Music/Low/China/Movie2.sgt",
+"sha1": "105fd020c717a2b46b1700cb0ff55afa0d330a9f"
+},
+{
+"dest": "Music/Low/China/Scary.sgt",
+"sha1": "6219623040afdbe7d91b46e01c52d22360dfe801"
+},
+{
+"dest": "Music/Low/China/Stealth.sgt",
+"sha1": "30726e5c7fb20f378578ad68c6ac29c0869370f2"
+},
+{
+"dest": "Music/Low/China/Style1.sty",
+"sha1": "00d46ec546669d18ee926d0d820265ef59c2e598"
+},
+{
+"dest": "Music/Low/China/vssver.scc",
+"sha1": "6f6d0a5e880237dde73347821bee1e8d1f2dd4f7"
+},
+{
+"dest": "Music/Low/Columbia/DarkJungle.sgt",
+"sha1": "ba1b1b88c00b9543720f87ef3b68b4845904e0e6"
+},
+{
+"dest": "Music/Low/Columbia/Jungle.dls",
+"sha1": "26e2ca50b6b706e5b4154e33dcf6a0afe6fd1454"
+},
+{
+"dest": "Music/Low/Columbia/Main.sgt",
+"sha1": "54002762a894f57ac0fb7af52672b18071525ff8"
+},
+{
+"dest": "Music/Low/Columbia/Style1.sty",
+"sha1": "1a7c8520521d77115de4a91a35e062c3478ec833"
+},
+{
+"dest": "Music/Low/Columbia/Village.sgt",
+"sha1": "7365ce48e7bc496422b541fe7910276334738a06"
+},
+{
+"dest": "Music/Low/Columbia/vssver.scc",
+"sha1": "d0d576521c862988d42f4356490796616f12ad62"
+},
+{
+"dest": "Music/Low/Holland/DLS Collection1.dls",
+"sha1": "2c5dc32d066dcfbac828cf6cd06ea76763c24cf5"
+},
+{
+"dest": "Music/Low/Holland/InsideShip.sgt",
+"sha1": "c94bfd6be670c7924da2dfca6cd37626026b1c5b"
+},
+{
+"dest": "Music/Low/Holland/Main.sgt",
+"sha1": "3ac01e808a98a5cc2f31e20465538cb0f6bd7ce8"
+},
+{
+"dest": "Music/Low/Holland/StripClub.sgt",
+"sha1": "9a6d1cfc6d9e141bdfa200567a3cc16c04fda34d"
+},
+{
+"dest": "Music/Low/Holland/Style1.sty",
+"sha1": "2452e16c0dbd26fec4164a3a611c96a0739c41b1"
+},
+{
+"dest": "Music/Low/Holland/vssver.scc",
+"sha1": "5d4661b71207ffbe4983ff48eab282c5fef50536"
+},
+{
+"dest": "Music/Low/Hungary/DLS Collection1.dls",
+"sha1": "3aa4117b1fbc1275f7ef4a8d6e42bf0869afc041"
+},
+{
+"dest": "Music/Low/Hungary/Elevator.sgt",
+"sha1": "4afb50d36f58937d5c2f5826d1c93de8f7a63972"
+},
+{
+"dest": "Music/Low/Hungary/Fight.sgt",
+"sha1": "71e4fba365e8d25ac956154fb06822eede93535c"
+},
+{
+"dest": "Music/Low/Hungary/Main.sgt",
+"sha1": "92451ee28ec38d90d05aeaa7b848e9a024160db3"
+},
+{
+"dest": "Music/Low/Hungary/Pool.sgt",
+"sha1": "b8e9ebc2c029508dea80719c56cf4e58808c0427"
+},
+{
+"dest": "Music/Low/Hungary/Scary.sgt",
+"sha1": "51858d45e77ee335792463f0bd6fc942da79e228"
+},
+{
+"dest": "Music/Low/Hungary/Style1.sty",
+"sha1": "77ec8f1a11568d981f0812f4b6cf342ba6662a37"
+},
+{
+"dest": "Music/Low/Hungary/vssver.scc",
+"sha1": "7af650a0b931fc430d11aba7517740bd31b1bd84"
+},
+{
+"dest": "Music/Low/Main/Main.sgt",
+"sha1": "7fb38cb652d8870a2814451dc96f67e8d7e63605"
+},
+{
+"dest": "Music/Low/Main/Main2.sgt",
+"sha1": "394c650e9e4d6cdbc5e45260ebe87be0722b36ec"
+},
+{
+"dest": "Music/Low/Main/MainInstr.dls",
+"sha1": "caf8cd3f12bb15097c16b80dab7745a93d288315"
+},
+{
+"dest": "Music/Low/Main/Style1.sty",
+"sha1": "9a9a1d37d1ddbc3fe81f4903a71390e47e3897c3"
+},
+{
+"dest": "Music/Low/Main/vssver.scc",
+"sha1": "7d8982396eddb40e0e8359826be888bc566cd67b"
+},
+{
+"dest": "Music/Low/Romania/Basement.sgt",
+"sha1": "17fa982621abf29b48909db8c89d04164a5beb6e"
+},
+{
+"dest": "Music/Low/Romania/Discovery.sgt",
+"sha1": "463c88a040db3bdec21de9af9aa1ef37312d6314"
+},
+{
+"dest": "Music/Low/Romania/Fighting.sgt",
+"sha1": "bf941058de3dc66db51c7b6ca2d707c3b36982d3"
+},
+{
+"dest": "Music/Low/Romania/Hospital Samples.dls",
+"sha1": "8e8d7ea3fd620e91766737702050a2cd4448c2b6"
+},
+{
+"dest": "Music/Low/Romania/Main.sgt",
+"sha1": "7d319593bce1104cf9146f48cbade4430a550493"
+},
+{
+"dest": "Music/Low/Romania/Mellow Fighting.sgt",
+"sha1": "ef98ca1ac4ea67991bad6961451a1c2021603f4a"
+},
+{
+"dest": "Music/Low/Romania/Movie1.sgt",
+"sha1": "2ce4b8156dbcc664f85bd133fed3a6c949fc8f26"
+},
+{
+"dest": "Music/Low/Romania/Movie2.sgt",
+"sha1": "94a8bd779a8a0d8195eda27863aea349abc48c71"
+},
+{
+"dest": "Music/Low/Romania/Style1.sty",
+"sha1": "1cfeb7b8cea868c48cfc11dc391a157180b6c323"
+},
+{
+"dest": "Music/Low/Romania/vssver.scc",
+"sha1": "2af39476eaf6d4ee0d841780926ed5e2af29d8f6"
+},
+{
+"dest": "Music/Main/Main.sgt",
+"sha1": "7fb38cb652d8870a2814451dc96f67e8d7e63605"
+},
+{
+"dest": "Music/Main/Main2.sgt",
+"sha1": "ed1c85224ea9175b902a0d1db107d7e42a584f5a"
+},
+{
+"dest": "Music/Main/MainInstr.dls",
+"sha1": "7897a00e58b987c348f68307e1000cba51c4046f"
+},
+{
+"dest": "Music/Main/Style1.sty",
+"sha1": "9a9a1d37d1ddbc3fe81f4903a71390e47e3897c3"
+},
+{
+"dest": "Music/Main/vssver.scc",
+"sha1": "e0991645a4e9666712c233c9b4ff45c4c9f4ee86"
+},
+{
+"dest": "Music/Romania/Basement.sgt",
+"sha1": "17fa982621abf29b48909db8c89d04164a5beb6e"
+},
+{
+"dest": "Music/Romania/Discovery.sgt",
+"sha1": "463c88a040db3bdec21de9af9aa1ef37312d6314"
+},
+{
+"dest": "Music/Romania/Fighting.sgt",
+"sha1": "950b497f72cf81a17a1adf611c38addbf8f258ca"
+},
+{
+"dest": "Music/Romania/Hospital Samples.dls",
+"sha1": "d15a0ecb2dbea6562c6d5b169e63511dce4c5fb5"
+},
+{
+"dest": "Music/Romania/Main.sgt",
+"sha1": "26e7838e684de025590ef797ac9e8db74e551dbe"
+},
+{
+"dest": "Music/Romania/Mellow Fighting.sgt",
+"sha1": "e26d26921a6d908410be920297d2cf3e99084b10"
+},
+{
+"dest": "Music/Romania/Movie1.sgt",
+"sha1": "2ce4b8156dbcc664f85bd133fed3a6c949fc8f26"
+},
+{
+"dest": "Music/Romania/Movie2.sgt",
+"sha1": "94a8bd779a8a0d8195eda27863aea349abc48c71"
+},
+{
+"dest": "Music/Romania/Style1.sty",
+"sha1": "1cfeb7b8cea868c48cfc11dc391a157180b6c323"
+},
+{
+"dest": "Music/Romania/vssver.scc",
+"sha1": "17e545444727676e1d1be5b76016e182881a0892"
+},
+{
+"dest": "Setup/locale.zip",
+"sha1": "2caaa2aed5e7b6fbff098f8b9c7ca59d411a3ed4"
+},
+{
+"dest": "Setup/Locale/language-Deutsch.zip",
+"sha1": "acf4a24da31215487112ced76c0ef7b2bf16f8b8"
+},
+{
+"dest": "Setup/Locale/language-English.zip",
+"sha1": "2caaa2aed5e7b6fbff098f8b9c7ca59d411a3ed4"
+},
+{
+"dest": "Setup/Locale/language-Espaol.zip",
+"sha1": "c46e55489678af9c11e1673b15b2da3eab0e2a0a"
+},
+{
+"dest": "Setup/Locale/language-Franais.zip",
+"sha1": "785d69c11f34b8e4724c61ddec338f35b29c09bb"
+},
+{
+"dest": "Setup/Locale/language-Italiano.zip",
+"sha1": "a8bba33fa448dd4d3b8d4d0bb30c1e922f5b0a8e"
+},
+{
+"dest": "Sounds/Italian/Sound/AllLevels/Waves/Flashbacks/vssver.scc",
+"sha1": "b8e4774dafbc24949832e4632c3a4c826ca45c0f"
+},
+{
+"dest": "Sounds/Italian/Sound/AllLevels/Waves/Flashbacks/_1_Boris01.wav",
+"sha1": "71b442c30402db50169f85d2df41c565d4c48682"
+},
+{
+"dest": "Sounds/Italian/Sound/AllLevels/Waves/Flashbacks/_2_Hong01.wav",
+"sha1": "014fce05ee87f03b06bd29ba168ddafdce4a58be"
+},
+{
+"dest": "Sounds/Italian/Sound/AllLevels/Waves/Flashbacks/_3_Professor01.wav",
+"sha1": "eafb6f5abf03a7d205ea94af17489b4de1d24a75"
+},
+{
+"dest": "Sounds/Italian/Sound/AllLevels/Waves/Flashbacks/_4_Druglord01b.wav",
+"sha1": "1bf0bcd46f4c0cc98a775de1f788765af20573dc"
+},
+{
+"dest": "Sounds/Italian/Sound/AllLevels/Waves/Flashbacks/_5_Frantz01.wav",
+"sha1": "9de7db2319755523fd5c605a752c03c269c04b7c"
+},
+{
+"dest": "Sounds/Italian/Sound/AllLevels/Waves/Flashbacks/_6_Professor02.wav",
+"sha1": "1f78fecedd40035d364856910a9329191be9920d"
+},
+{
+"dest": "Sounds/Italian/Sound/AllLevels/Waves/Flashbacks/_7_Druglord02.wav",
+"sha1": "7afb154cd4f34d7944b424a8ca69ae0e71cefc20"
+},
+{
+"dest": "Sounds/Italian/Sound/AllLevels/Waves/Flashbacks/_8_Hong02.wav",
+"sha1": "07decce2ef565729b1de3023129d6822d570f20c"
+},
+{
+"dest": "Sounds/Italian/Sound/AllLevels/Waves/Flashbacks/_9_Professor03.wav",
+"sha1": "ca21f55b1c440c09eb1b2ebf7e9401068e4c2541"
+},
+{
+"dest": "Sounds/Italian/Sound/AllLevels/Waves/Human/European Civilians/1C.wav",
+"sha1": "105bbf21247d7aff328f61705603eec49a9baacf"
+},
+{
+"dest": "Sounds/Italian/Sound/AllLevels/Waves/Human/European Civilians/4C.wav",
+"sha1": "2945682d4f54e392ffd6503429379708147f9e16"
+},
+{
+"dest": "Sounds/Italian/Sound/AllLevels/Waves/Human/European Civilians/5C.wav",
+"sha1": "5528828526b11734455ed7b60d76d6b2d76a6207"
+},
+{
+"dest": "Sounds/Italian/Sound/AllLevels/Waves/Human/European Civilians/6C.wav",
+"sha1": "c27ecb1f0a89309f570206edfd8eb8001b3eee41"
+},
+{
+"dest": "Sounds/Italian/Sound/AllLevels/Waves/Human/European Civilians/vssver.scc",
+"sha1": "fb4b219b17d4c9d5c23a20b1620303039c708313"
+},
+{
+"dest": "Sounds/Italian/Sound/AllLevels/Waves/Human/European Guards/Action/3G.wav",
+"sha1": "30c0f7fe329b047eaa30f901651690da86775533"
+},
+{
+"dest": "Sounds/Italian/Sound/AllLevels/Waves/Human/European Guards/Action/vssver.scc",
+"sha1": "5f8ebe7c5d1707e5a066b32bf5041c4d38d4c19c"
+},
+{
+"dest": "Sounds/Italian/Sound/AllLevels/Waves/Human/European Guards/Go Away/1G.wav",
+"sha1": "ce58bcc2fc88e9953b94102a41fd741c0eb35f1d"
+},
+{
+"dest": "Sounds/Italian/Sound/AllLevels/Waves/Human/European Guards/Go Away/2G.wav",
+"sha1": "3977f66f1355fc2ba3a7a3e02e1c4add467e9630"
+},
+{
+"dest": "Sounds/Italian/Sound/AllLevels/Waves/Human/European Guards/Go Away/vssver.scc",
+"sha1": "c0abf49d7f5a141ce5087b6e20251b7e852761db"
+},
+{
+"dest": "Sounds/Italian/Sound/AllLevels/Waves/Human/European Guards/Into Alarm/1G.wav",
+"sha1": "196956db3a7da2b2a3543f8481fd681ca533c119"
+},
+{
+"dest": "Sounds/Italian/Sound/AllLevels/Waves/Human/European Guards/Into Alarm/4G.wav",
+"sha1": "6f5afc7adf5daec0b885ef30de0df54ccd243833"
+},
+{
+"dest": "Sounds/Italian/Sound/AllLevels/Waves/Human/European Guards/Into Alarm/5G.wav",
+"sha1": "ccba0301011992a34d3a18df5803e99c23aa311b"
+},
+{
+"dest": "Sounds/Italian/Sound/AllLevels/Waves/Human/European Guards/Into Alarm/6G.wav",
+"sha1": "9f6a984291f7ba039ddbe11a126cae2333490615"
+},
+{
+"dest": "Sounds/Italian/Sound/AllLevels/Waves/Human/European Guards/Into Alarm/7G.wav",
+"sha1": "c757a6a0ad2a5fb3f4d22f9c73f482d90e685972"
+},
+{
+"dest": "Sounds/Italian/Sound/AllLevels/Waves/Human/European Guards/Into Alarm/8G.wav",
+"sha1": "c4b4869fe455f6457e7a16421dc5e4c5f550f264"
+},
+{
+"dest": "Sounds/Italian/Sound/AllLevels/Waves/Human/European Guards/Into Alarm/vssver.scc",
+"sha1": "a88c2c4731bca56c4a92eb19f8ee97a27f742094"
+},
+{
+"dest": "Sounds/Italian/Sound/AllLevels/Waves/Human/European Guards/Repel/1G.wav",
+"sha1": "fdf36a2b551815c65db82ade7bf64732a42c5da1"
+},
+{
+"dest": "Sounds/Italian/Sound/AllLevels/Waves/Human/European Guards/Repel/2G.wav",
+"sha1": "19c575ed863c32fd055b9297a22c63f582511623"
+},
+{
+"dest": "Sounds/Italian/Sound/AllLevels/Waves/Human/European Guards/Repel/6G.wav",
+"sha1": "6544eae3765a189ad06f54cd3c3309aeebfe3caa"
+},
+{
+"dest": "Sounds/Italian/Sound/AllLevels/Waves/Human/European Guards/Repel/7G.wav",
+"sha1": "05ee22bbd0cef906d37ce520e23d777934696e28"
+},
+{
+"dest": "Sounds/Italian/Sound/AllLevels/Waves/Human/European Guards/Repel/vssver.scc",
+"sha1": "330dcf620baa39a95b936a63d6f49e57516fbe14"
+},
+{
+"dest": "Sounds/Italian/Sound/AllLevels/Waves/Human/Female European Civilians/Panic/1C.wav",
+"sha1": "d9dda4f223d8bff54e94061fc02cd8edc264ce59"
+},
+{
+"dest": "Sounds/Italian/Sound/AllLevels/Waves/Human/Female European Civilians/Panic/2C.wav",
+"sha1": "e34bd71017530bdaaaf180a4e01a8ba2bb11c5b1"
+},
+{
+"dest": "Sounds/Italian/Sound/AllLevels/Waves/Human/Female European Civilians/Panic/3C.wav",
+"sha1": "f347c0d77d8b373799ba2f2a25ac6a8ac3d057fc"
+},
+{
+"dest": "Sounds/Italian/Sound/AllLevels/Waves/Human/Female European Civilians/Panic/vssver.scc",
+"sha1": "7ff329fe5d1f27fed5087766deda184bcdf6fb6a"
+},
+{
+"dest": "Sounds/Italian/Sound/C1_HongKong/Chinese Civilians/Panic/2C.wav",
+"sha1": "fad9cf0092970372c4b13460c9f5da1c7495e9ac"
+},
+{
+"dest": "Sounds/Italian/Sound/C1_HongKong/Chinese Civilians/Panic/4C.wav",
+"sha1": "616e1c71f0fb45401eafd3f10c84d43e0a25d78c"
+},
+{
+"dest": "Sounds/Italian/Sound/C1_HongKong/Chinese Civilians/Panic/5C.wav",
+"sha1": "1a6bcfd2c5df78877f1ba5509b8bad0ad02f2956"
+},
+{
+"dest": "Sounds/Italian/Sound/C1_HongKong/Chinese Civilians/Panic/6C.wav",
+"sha1": "dce93676a1760da3cd38802fa24d34e10386aaf4"
+},
+{
+"dest": "Sounds/Italian/Sound/C1_HongKong/Chinese Civilians/Panic/vssver.scc",
+"sha1": "e1e9a1f87ddb88d2e559bf5ab488ea2650ae6aae"
+},
+{
+"dest": "Sounds/Italian/Sound/C1_HongKong/Chinese Guards/Action/Heh1.wav",
+"sha1": "2e3e6627863508c56c1cc0b038e8434b73136383"
+},
+{
+"dest": "Sounds/Italian/Sound/C1_HongKong/Chinese Guards/Action/Heh2.wav",
+"sha1": "6aebe1893539a02fa72c0535ba42d591356c4764"
+},
+{
+"dest": "Sounds/Italian/Sound/C1_HongKong/Chinese Guards/Action/vssver.scc",
+"sha1": "7a9afa97c767237bfd15a7141c3f0d6aa2bc3be3"
+},
+{
+"dest": "Sounds/Italian/Sound/C1_HongKong/Chinese Guards/Go away/2G.wav",
+"sha1": "3977f66f1355fc2ba3a7a3e02e1c4add467e9630"
+},
+{
+"dest": "Sounds/Italian/Sound/C1_HongKong/Chinese Guards/Go away/vssver.scc",
+"sha1": "23bca676d3d51f48853a285169113a046687c59b"
+},
+{
+"dest": "Sounds/Italian/Sound/C1_HongKong/Chinese Guards/Into Alarm/1G.wav",
+"sha1": "196956db3a7da2b2a3543f8481fd681ca533c119"
+},
+{
+"dest": "Sounds/Italian/Sound/C1_HongKong/Chinese Guards/Into Alarm/2G.wav",
+"sha1": "0c0b5897290de1c936d9964aecd0bb4d6101331b"
+},
+{
+"dest": "Sounds/Italian/Sound/C1_HongKong/Chinese Guards/Into Alarm/3G.wav",
+"sha1": "3db8c32ddda5ee26e7ca693374f8496c31168734"
+},
+{
+"dest": "Sounds/Italian/Sound/C1_HongKong/Chinese Guards/Into Alarm/4G.wav",
+"sha1": "6f5afc7adf5daec0b885ef30de0df54ccd243833"
+},
+{
+"dest": "Sounds/Italian/Sound/C1_HongKong/Chinese Guards/Into Alarm/5G.wav",
+"sha1": "ccba0301011992a34d3a18df5803e99c23aa311b"
+},
+{
+"dest": "Sounds/Italian/Sound/C1_HongKong/Chinese Guards/Into Alarm/6G.wav",
+"sha1": "9f6a984291f7ba039ddbe11a126cae2333490615"
+},
+{
+"dest": "Sounds/Italian/Sound/C1_HongKong/Chinese Guards/Into Alarm/vssver.scc",
+"sha1": "1032348cd51cd287861a361a660f444a49b4b3a0"
+},
+{
+"dest": "Sounds/Italian/Sound/C1_HongKong/Chinese Guards/Repel/5G.wav",
+"sha1": "fff091210f2a15b6065a5d0bbba2bc6f564fb79c"
+},
+{
+"dest": "Sounds/Italian/Sound/C1_HongKong/Chinese Guards/Repel/7G.wav",
+"sha1": "05ee22bbd0cef906d37ce520e23d777934696e28"
+},
+{
+"dest": "Sounds/Italian/Sound/C1_HongKong/Chinese Guards/Repel/8G.wav",
+"sha1": "86159670fa36ffa2879ea72acf380df4216a0f10"
+},
+{
+"dest": "Sounds/Italian/Sound/C1_HongKong/Chinese Guards/Repel/9G.wav",
+"sha1": "4ef8dd1a3477a4686f369cf392d7bb6ee9a8f05d"
+},
+{
+"dest": "Sounds/Italian/Sound/C1_HongKong/Chinese Guards/Repel/vssver.scc",
+"sha1": "d5cd27fc97121f1762527367ebca9b89ac9d8136"
+},
+{
+"dest": "Sounds/Italian/Sound/C1_HongKong/Chinese Guards FemaleXXX/3G.wav",
+"sha1": "c630ea90ee27d8425b2d39f2d0f62d15d0a1f7e8"
+},
+{
+"dest": "Sounds/Italian/Sound/C1_HongKong/Chinese Guards FemaleXXX/7G.wav",
+"sha1": "717a8d5cee06ca2052a29f69f7de981d5acd3dd2"
+},
+{
+"dest": "Sounds/Italian/Sound/C1_HongKong/Chinese Guards FemaleXXX/Heh1.wav",
+"sha1": "6623f2422c8ef5f8250e612e074db3c85a52cd6b"
+},
+{
+"dest": "Sounds/Italian/Sound/C1_HongKong/Chinese Guards FemaleXXX/Skrid1.wav",
+"sha1": "b0a6748a14083949113c2f862bbd546031252898"
+},
+{
+"dest": "Sounds/Italian/Sound/C1_HongKong/Chinese Guards FemaleXXX/Skrid4.wav",
+"sha1": "62eb247c237db17eaad1153d7bd3afff760703fb"
+},
+{
+"dest": "Sounds/Italian/Sound/C1_HongKong/Chinese Guards FemaleXXX/vssver.scc",
+"sha1": "30466ac0592e1c962dc3e1b75e8f099b8a4f006b"
+},
+{
+"dest": "Sounds/Italian/Sound/C1_HongKong/Mission C1_4/Lei/Impatient1/1L.wav",
+"sha1": "c501a19517c21012f4a9948803eb0835fb2ecb7d"
+},
+{
+"dest": "Sounds/Italian/Sound/C1_HongKong/Mission C1_4/Lei/Impatient1/3L.wav",
+"sha1": "b446c9d59b5fcb0540e045bf58d4ce1490e32e3a"
+},
+{
+"dest": "Sounds/Italian/Sound/C1_HongKong/Mission C1_4/Lei/Impatient1/vssver.scc",
+"sha1": "30198c6b9fdd911dfa3f5ae4e3bca75f27554fd4"
+},
+{
+"dest": "Sounds/Italian/Sound/C1_HongKong/Mission C1_4/Lei/Impatient2/1L.wav",
+"sha1": "c9f94a46a920296d5fafe462e67392357d602809"
+},
+{
+"dest": "Sounds/Italian/Sound/C1_HongKong/Mission C1_4/Lei/Impatient2/3L.wav",
+"sha1": "8676a0112492bfb9802798acf6171505c78ac201"
+},
+{
+"dest": "Sounds/Italian/Sound/C1_HongKong/Mission C1_4/Lei/Impatient2/vssver.scc",
+"sha1": "29c9b029d4303d705edd26cd507c927dd34e5c88"
+},
+{
+"dest": "Sounds/Italian/Sound/C2_RotterdamHarbour/Mission C2_1/Gang/2G.wav",
+"sha1": "0f1e4e83d08b83ed5348c3a384333322584f8dd7"
+},
+{
+"dest": "Sounds/Italian/Sound/C2_RotterdamHarbour/Mission C2_1/Gang/4G.wav",
+"sha1": "4a2c9b3739d1bb60eeeb72a9fcd05c1176a6be65"
+},
+{
+"dest": "Sounds/Italian/Sound/C2_RotterdamHarbour/Mission C2_1/Gang/6G.wav",
+"sha1": "570c8a258bf2d8f81df3fa3591fe42cc0322e429"
+},
+{
+"dest": "Sounds/Italian/Sound/C2_RotterdamHarbour/Mission C2_1/Gang/vssver.scc",
+"sha1": "84fba9c0effd868766f3c8fe0c9cbab28512d418"
+},
+{
+"dest": "Sounds/Italian/Sound/C2_RotterdamHarbour/Mission C2_2/RussianBodyguard/1/1RB.wav",
+"sha1": "2933e3e2f242ccbc418299716e48b16f95f7b3ef"
+},
+{
+"dest": "Sounds/Italian/Sound/C2_RotterdamHarbour/Mission C2_2/RussianBodyguard/1/3RB.wav",
+"sha1": "967387319938300bcba2cefcb760504deef4cde4"
+},
+{
+"dest": "Sounds/Italian/Sound/C2_RotterdamHarbour/Mission C2_2/RussianBodyguard/1/5RB.wav",
+"sha1": "47ba3ff53faeaef1593826fa5b1a1fec3cf4a17d"
+},
+{
+"dest": "Sounds/Italian/Sound/C2_RotterdamHarbour/Mission C2_2/RussianBodyguard/1/vssver.scc",
+"sha1": "f26fb418236f93fdfaca46d48736b7162c410665"
+},
+{
+"dest": "Sounds/Italian/Sound/C3_ThermalBath/Waves/Mission C3_1/TerroristGuard/4/1TG.wav",
+"sha1": "a41bd0d9d2f0208cc1fe7765dabe1caf6f8b2a4b"
+},
+{
+"dest": "Sounds/Italian/Sound/C3_ThermalBath/Waves/Mission C3_1/TerroristGuard/4/vssver.scc",
+"sha1": "a3c4c0a041cd52a4595e19907af967924ed2a590"
+},
+{
+"dest": "Sounds/Italian/Sound/C4_RainForest/Waves/Columbian Guards/Action/5G.wav",
+"sha1": "8d8450f21a26549d34a4c6ff30e849f436019138"
+},
+{
+"dest": "Sounds/Italian/Sound/C4_RainForest/Waves/Columbian Guards/Action/6G.wav",
+"sha1": "a6e7875ef12bbb1ae9b7628c10163e7edba03445"
+},
+{
+"dest": "Sounds/Italian/Sound/C4_RainForest/Waves/Columbian Guards/Action/vssver.scc",
+"sha1": "ef4d83c9fe0897c04dd21479f2422bc1ed683cc3"
+},
+{
+"dest": "Sounds/Italian/Sound/C4_RainForest/Waves/Columbian Guards/Into Alarm/1G.wav",
+"sha1": "4ed88a21c35c0ea4a920593ce2cfc99fc5a88e32"
+},
+{
+"dest": "Sounds/Italian/Sound/C4_RainForest/Waves/Columbian Guards/Into Alarm/3G.wav",
+"sha1": "0af41d65a41f01f9aaabb15a52c2f14cdb6511bd"
+},
+{
+"dest": "Sounds/Italian/Sound/C4_RainForest/Waves/Columbian Guards/Into Alarm/5G.wav",
+"sha1": "e3bfe418564d2e1dc8ca2b6b717800a724a1376b"
+},
+{
+"dest": "Sounds/Italian/Sound/C4_RainForest/Waves/Columbian Guards/Into Alarm/7G.wav",
+"sha1": "034cd38ac173d4308f199d7afb33620355fabfd8"
+},
+{
+"dest": "Sounds/Italian/Sound/C4_RainForest/Waves/Columbian Guards/Into Alarm/HEH2.wav",
+"sha1": "53a362053021fca7ab3a16829bf8ee6624c6ccdd"
+},
+{
+"dest": "Sounds/Italian/Sound/C4_RainForest/Waves/Columbian Guards/Into Alarm/HEH3.wav",
+"sha1": "7a961357085473e77149de74cffcb91025a5e856"
+},
+{
+"dest": "Sounds/Italian/Sound/C4_RainForest/Waves/Columbian Guards/Into Alarm/vssver.scc",
+"sha1": "fe1492d6b453562e2bfd8b5fb4583ca796287a0e"
+},
+{
+"dest": "Sounds/Speech/English.bin",
+"sha1": "1cff8ae4c06fde68ad4a3e93c98826e75e6b5ac0"
+},
+{
+"dest": "Sounds/Speech/English.idx",
+"sha1": "2e9b25e8d66173c51e318b7c488b495d5b089173"
+},
+{
+"dest": "Sounds/Speech/HitmanIntro.wav",
+"sha1": "1945446000282ac30bcf442d29d5ad585183d04c"
+},
+{
+"dest": "Sounds/Speech/Italian.bin",
+"sha1": "cb3b9f0f42bcb0e329f4f02d6db5f4c3a6b3d427"
+},
+{
+"dest": "Sounds/Speech/Italian.idx",
+"sha1": "6539b7deaf2e84d25776288231cfc98a014d1aa8"
+}
+]

@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hitman: Codename 47 — in your browser</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23e5b342'/%3E%3Ctext x='16' y='22' font-family='sans-serif' font-size='15' font-weight='700' text-anchor='middle' fill='%23140f26'%3EH47%3C/text%3E%3C/svg%3E" />
+    <style>
+      :root {
+        --bg: #140f26;
+        --panel: #1f1838;
+        --ink: #f5f2fc;
+        --muted: #a69bbd;
+        --accent: #e5b342;
+        --danger: #e06c7d;
+        --line: #332752;
+      }
+      * { box-sizing: border-box; }
+      html, body { height: 100%; margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.5 system-ui, sans-serif; }
+      #shell { max-width: 720px; margin: 0 auto; padding: 32px 16px; }
+      h1 { font-size: 26px; margin: 0 0 4px; }
+      h2 { font-size: 17px; margin: 22px 0 4px; }
+      p { color: var(--muted); }
+      .panel { background: var(--panel); border-radius: 10px; padding: 18px; margin: 18px 0; }
+      .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+      button, label.button { display: inline-block; background: var(--accent); color: #140f26; border: 0; border-radius: 8px; padding: 10px 18px; font: inherit; font-weight: 700; cursor: pointer; }
+      button:disabled { opacity: 0.5; cursor: default; }
+      button.secondary, label.button.secondary { background: transparent; color: var(--muted); border: 1px solid var(--line); font-weight: 600; }
+      progress { width: 100%; height: 12px; }
+      #log { white-space: pre-wrap; font: 12px/1.4 ui-monospace, monospace; color: var(--muted); max-height: 180px; overflow: auto; }
+      .error { color: var(--danger); }
+      .note { color: var(--muted); font-size: 14px; margin: 10px 0 0; }
+      footer { margin-top: 28px; border-top: 1px solid var(--line); padding-top: 12px; }
+      footer a { color: var(--ink); }
+      details { margin-top: 14px; }
+      summary { cursor: pointer; color: var(--ink); }
+      details ul { padding-left: 20px; }
+      details code { background: var(--bg); padding: 1px 5px; border-radius: 4px; font-size: 13px; }
+      #save-confirm { margin-top: 12px; padding: 12px; border: 1px solid var(--line); border-radius: 8px; }
+      #save-confirm p { margin: 0 0 10px; color: var(--ink); }
+      h3 { font-size: 15px; margin: 20px 0 6px; color: var(--accent); }
+      .spread { justify-content: space-between; }
+      #settings-panel label { display: flex; align-items: center; gap: 8px; margin: 6px 0; }
+      #settings-panel select { font: inherit; }
+      #settings-panel select { background: var(--bg); color: var(--ink); border: 1px solid var(--line); border-radius: 6px; padding: 4px 6px; }
+      button.tab { background: transparent; color: var(--muted); border: 1px solid var(--line); padding: 6px 12px; }
+      button.tab.on { background: var(--accent); color: #140f26; border-color: var(--accent); font-weight: 700; }
+      #settings-panel h2 { margin: 0; }
+      #settings-panel input { accent-color: var(--accent); }
+      #set-adv { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 0 16px; margin-top: 6px; }
+      #set-bindings { width: 100%; border-collapse: collapse; margin-top: 8px; table-layout: fixed; }
+      #set-bindings td { padding: 3px 4px; border-top: 1px solid var(--line); white-space: nowrap; }
+      #set-bindings td:first-child, #set-bindings th:first-child { width: 30%; white-space: normal; }
+      #set-bindings th { text-align: left; font-weight: 600; color: var(--muted); padding: 4px; }
+      button.binding { background: var(--bg); color: var(--ink); border: 1px solid var(--line); font-weight: 500; padding: 4px 8px; width: calc(100% - 2.2em); max-width: 12em; text-align: left; overflow: hidden; text-overflow: ellipsis; vertical-align: middle; }
+      button.binding.capturing { border-color: var(--accent); color: var(--accent); }
+      button.clear { background: transparent; color: var(--muted); padding: 4px 0; width: 2em; font-weight: 400; vertical-align: middle; }
+      #set-alias { background: var(--bg); color: var(--ink); border: 1px solid var(--line); padding: 4px 12px; min-width: 4em; }
+      #set-alias.capturing { border-color: var(--accent); color: var(--accent); }
+      #help { position: fixed; inset: 0; z-index: 10; display: flex; align-items: center; justify-content: center; padding: 16px; background: rgb(0 0 0 / 0.6); }
+      #help[hidden] { display: none; }
+      #help .card { background: var(--panel); color: var(--ink); border-radius: 10px; padding: 18px 20px; width: 100%; max-width: 680px; max-height: 100%; overflow: auto; font: 15px/1.5 system-ui, sans-serif; }
+      #help h2 { margin: 0; }
+      #help table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+      #help th { text-align: left; color: var(--muted); font-weight: 600; padding: 4px 6px; }
+      #help td { padding: 4px 6px; border-top: 1px solid var(--line); }
+      #help td:nth-child(2), #help td:nth-child(3) { font-weight: 600; }
+      #help ul { margin: 4px 0; padding-left: 20px; color: var(--muted); }
+      #help li strong { color: var(--ink); }
+      #game { position: fixed; inset: 0; background: #000; display: none; }
+      #game.on { display: block; }
+      #canvas { width: 100%; height: 100%; display: block; outline: none; }
+      #hud { position: absolute; top: 12px; right: 12px; left: 12px; display: flex; justify-content: flex-end; align-items: center; gap: 12px; opacity: 0; transition: opacity 0.4s; pointer-events: none; }
+      #hud.show { opacity: 1; }
+      #hud.show button { pointer-events: auto; }
+      #hint { background: rgb(0 0 0 / 0.6); color: var(--ink); border-radius: 8px; padding: 6px 12px; font-size: 14px; }
+      #hint:empty { display: none; }
+      #hud button { background: rgb(0 0 0 / 0.6); color: var(--ink); border: 1px solid rgb(255 255 255 / 0.25); padding: 6px 14px; }
+    </style>
+  </head>
+  <body>
+    <div id="shell">
+      <h1>Hitman: Codename 47</h1>
+      <p>Play your own copy of the 2000 PC game in this browser. The game files come from your GOG installer disc image and stay on this device. Use the mouse in the menus, press Esc for the pause menu (F1 shows the controls list).</p>
+      <p class="note">Works in current desktop Chrome, Edge, Firefox and Safari, in a normal (not private) window. Needs about 1 GB of storage for this site. Unpacking the disc takes under a minute, once.</p>
+      <div class="panel" id="status-panel">
+        <div id="status">Checking this browser…</div>
+        <progress id="progress" max="1" value="0" hidden></progress>
+      </div>
+      <div class="panel" id="install-panel" hidden>
+        <p>Choose a disc image (.iso) that holds the GOG installer of <strong>Hitman: Codename 47</strong> (the file <code>setup_hitman_codename_47_b192_(17919).exe</code>). It is unpacked into this browser's private storage (about 310 MB).</p>
+        <label class="button">Choose disc image<input id="iso" type="file" accept=".iso" hidden /></label>
+        <details class="note" id="iso-help">
+          <summary>How do I make a disc image?</summary>
+          <ul>
+            <li>Download the offline installer of <em>Hitman: Codename 47</em> from your GOG library (the single <code>.exe</code> file, build 17919).</li>
+            <li>Put it into an .iso: on Linux <code>genisoimage -o hitman.iso &lt;the .exe&gt;</code>; on Windows a free tool such as AnyBurn (“Create image file from files/folders”); on Mac <code>hdiutil makehybrid -iso -o hitman.iso folder/</code>.</li>
+          </ul>
+          <p>The image never leaves your computer: this page reads it inside your browser.</p>
+        </details>
+      </div>
+      <div class="panel" id="play-panel" hidden>
+        <div class="row">
+          <button id="play">Play</button>
+          <button id="controls" class="secondary">Controls</button>
+          <button id="settings" class="secondary">Settings</button>
+          <button id="reinstall" class="secondary">Reinstall from disc image</button>
+        </div>
+        <h2>Saved games</h2>
+        <p>Your progress is kept only in this browser (Hitman.sav and the Save folder of the install). Back it up to keep it safe or to carry it to another browser or computer. Restoring also accepts the Hitman.sav of a Windows installation.</p>
+        <div class="row">
+          <button id="save-export" class="secondary">Back up saves</button>
+          <label class="button secondary" id="save-import-label">Restore saves…<input id="save-import" type="file" multiple hidden /></label>
+        </div>
+        <div id="save-confirm" hidden>
+          <p id="save-confirm-text"></p>
+          <div class="row">
+            <button id="save-confirm-yes">Replace</button>
+            <button id="save-confirm-no" class="secondary">Cancel</button>
+          </div>
+        </div>
+        <p class="note" id="save-status"></p>
+      </div>
+      <div class="panel" id="settings-panel" hidden>
+        <div class="row spread"><h2>Settings</h2><button id="settings-close">Done</button></div>
+        <p class="note">The resolution is saved to the game's Hitman.ini as you change it and applies the next time you press Play.</p>
+        <h3>Graphics</h3>
+        <label>Resolution <select id="set-resolution"></select></label>
+        <h3>Browser</h3>
+        <label>Substitute Esc key <button id="set-alias"></button></label>
+        <p class="note">Browsers keep Esc for leaving fullscreen and releasing the mouse (Chrome and Edge let the game have it in fullscreen). This key works as Esc in the game everywhere.</p>
+        <p class="note" id="set-status"></p>
+      </div>
+      <div id="log"></div>
+      <footer class="note">
+        Not affiliated with or endorsed by IO Interactive, Eidos, Square Enix or GOG. This site hosts none of the game's files: you need your own disc image.
+        <a href="__REPO_URL__">Source code</a> · <a href="licenses.html">Licenses</a>
+      </footer>
+    </div>
+    <div id="game">
+      <canvas id="canvas" tabindex="0"></canvas>
+      <div id="hud">
+        <span id="hint"></span>
+        <button id="help-button">Controls (F1)</button>
+        <button id="fullscreen">Fullscreen</button>
+      </div>
+    </div>
+    <div id="help" hidden>
+      <div class="card" role="dialog" aria-labelledby="help-title">
+        <div class="row spread"><h2 id="help-title">Controls</h2><button id="help-close">Close</button></div>
+        <ul id="help-other"></ul>
+      </div>
+    </div>
+    <script type="module" src="./src/main.ts"></script>
+  </body>
+</html>
