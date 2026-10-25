@@ -123,6 +123,7 @@ void main() {
 
 const char* kFs = R"(#version 300 es
 precision highp float;
+precision highp int;
 in vec4 vColor;
 in vec2 vUv;
 in float vEyeZ;
