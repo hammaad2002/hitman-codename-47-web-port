@@ -252,6 +252,8 @@ async function resetSaves() {
 
 async function play() {
   setState("starting", "Starting…");
+  // Still inside the Play click: fill the screen (the whole page, so the translation progress stays visible).
+  if (!isFullscreen()) void enterFullscreen(document.documentElement).catch(() => {});
   if (params.has("resetSave")) await resetSaves();
   let game: Uint8Array | null = null;
   if (!DEV_ENGINE) {

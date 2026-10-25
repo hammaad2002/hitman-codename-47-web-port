@@ -34,6 +34,7 @@ export class Input {
   /** While suspended (an overlay is open) the game gets no input and is told it lost focus. */
   private suspended = false;
   private lockRefused = false;
+  private skipMove = false;
   /** Last pointer position in client space; integrated from motion while the pointer is locked. */
   private locked: [number, number] = [400, 300];
 
@@ -44,6 +45,11 @@ export class Input {
     window.addEventListener("keydown", (e) => this.key(e, true));
     window.addEventListener("keyup", (e) => this.key(e, false));
     canvas.addEventListener("mousemove", (e) => {
+      // Firefox reports the pointer's warp to the centre as motion on the first move after locking.
+      if (this.skipMove) {
+        this.skipMove = false;
+        return;
+      }
       const [x, y] = this.pos(e);
       // Relative motion in the game's client units (fractions carry over): the game recentres the cursor
       // with SetCursorPos and reads motion from the distance to the centre, see platform_web.cpp.
@@ -83,6 +89,7 @@ export class Input {
     document.addEventListener("pointerlockerror", () => (this.lockRefused = true));
     document.addEventListener("pointerlockchange", () => {
       if (this.pointerLocked) this.lockRefused = false;
+      this.skipMove = this.pointerLocked;
     });
     window.addEventListener("focus", () => {
       if (!this.suspended) engine._web_focus(1);
