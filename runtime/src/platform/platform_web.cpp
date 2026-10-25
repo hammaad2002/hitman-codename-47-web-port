@@ -250,8 +250,10 @@ EMSCRIPTEN_KEEPALIVE void web_mouse_button(int button, int down, int x, int y) {
   {
     std::lock_guard<std::mutex> lock(g_input_mutex);
     if (button >= 0 && button < 4) g_mouse.buttons[button] = down ? 0x80 : 0;
-    g_mouse_x = x;
-    g_mouse_y = y;
+    // With the virtual cursor the click lands where the game's cursor is, not at the page position.
+    if (!g_virtual_cursor) g_mouse_x = x, g_mouse_y = y;
+    x = g_mouse_x;
+    y = g_mouse_y;
   }
   InputEvent e{};
   e.kind = down ? InputEvent::MouseDown : InputEvent::MouseUp;

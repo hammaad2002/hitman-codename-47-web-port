@@ -152,6 +152,7 @@ void apply_window_pos(Cpu* c, int x, int y, int cx, int cy, uint32_t flags) {
   if (size && cx > 0 && cy > 0) {
     g_width = cx;
     g_height = cy;
+    plat::set_window_size(cx, cy);  // the page maps pointer positions into the client area
   }
 
   uint32_t wp = sys_alloc(28);
@@ -191,8 +192,8 @@ void pump() {
   plat::poll_events(evs);
   for (auto& e : evs) {
     uint32_t keyl = 1u | (e.scancode & 0xff) << 16 | ((e.scancode & 0x100) ? 1u << 24 : 0u);
-    if (trace && e.kind != plat::InputEvent::MouseMove)
-      rt::log(rt::Log::Info, "input: event %d vk=0x%x scan=0x%x ch=%u button=%u", (int)e.kind, e.vk, e.scancode, e.ch, e.button);
+    if (trace)
+      rt::log(rt::Log::Info, "input: event %d vk=0x%x scan=0x%x ch=%u button=%u at %d,%d", (int)e.kind, e.vk, e.scancode, e.ch, e.button, e.x, e.y);
     switch (e.kind) {
       case plat::InputEvent::KeyDown:
         post(e.vk == 0x12 ? WM_SYSKEYDOWN : WM_KEYDOWN, e.vk, keyl | (e.repeat ? 1u << 30 : 0u));
@@ -203,9 +204,16 @@ void pump() {
       case plat::InputEvent::Char:
         post(WM_CHAR, e.ch, 1);
         break;
-      case plat::InputEvent::MouseMove:
-        post(WM_MOUSEMOVE, 0, (uint32_t)(e.y & 0xffff) << 16 | (uint32_t)(e.x & 0xffff));
+      case plat::InputEvent::MouseMove: {
+        // Like Windows, consecutive moves coalesce into one WM_MOUSEMOVE: the game recentres with
+        // SetCursorPos once per frame and adds up (x - centre) per message, so every queued move
+        // would count the motion so far again.
+        uint32_t lp = (uint32_t)(e.y & 0xffff) << 16 | (uint32_t)(e.x & 0xffff);
+        std::lock_guard<std::mutex> lock(g_mutex);
+        if (!g_queue.empty() && g_queue.back().message == WM_MOUSEMOVE) g_queue.back().lparam = lp;
+        else g_queue.push_back({g_hwnd, WM_MOUSEMOVE, 0, lp});
         break;
+      }
       case plat::InputEvent::MouseDown:
       case plat::InputEvent::MouseUp: {
         static const uint32_t down[] = {WM_LBUTTONDOWN, WM_RBUTTONDOWN, WM_MBUTTONDOWN};
@@ -220,11 +228,17 @@ void pump() {
         post(WM_MOUSEWHEEL, (uint32_t)(e.dy * 120) << 16, 0);
         break;
       case plat::InputEvent::FocusGained:
+        // Like Windows: reactivation gives the window keyboard focus back (GetFocus), or keys stay ignored after the first blur.
         post(WM_ACTIVATEAPP, 1, 0);
         post(WM_NCACTIVATE, 1, 0);
         post(WM_ACTIVATE, 1, 0);
+        if (!g_has_focus) {
+          g_has_focus = true;
+          post(WM_SETFOCUS, 0, 0);
+        }
         break;
       case plat::InputEvent::FocusLost:
+        if (g_has_focus) post(WM_KILLFOCUS, 0, 0);
         g_has_focus = false;
         post(WM_NCACTIVATE, 0, 0);
         post(WM_ACTIVATE, 0, 0);
@@ -488,6 +502,8 @@ HLE_STDCALL(kDll, UpdateWindow, 1) { return 1; }
 HLE_STDCALL(kDll, IsWindowEnabled, 1) { return 1; }
 HLE_STDCALL(kDll, IsWindowVisible, 1) { return 1; }
 HLE_STDCALL(kDll, SetCursorPos, 2) {
+  static const bool trace = rt::trace_enabled("input");
+  if (trace) log(Log::Info, "input: SetCursorPos %d,%d", (int)arg(c, 0), (int)arg(c, 1));
   plat::set_mouse_pos((int)arg(c, 0), (int)arg(c, 1));
   return 1;
 }
@@ -729,7 +745,13 @@ HLE_STDCALL("winmm.dll", timeKillEvent, 1) { return 0; }  // TIMERR_NOERROR
 
 // ---- Hitman additions: display modes, cursor, keyboard state, remaining window calls ------------
 
-HLE_STDCALL(kDll, ChangeDisplaySettingsA, 2) { return 0; }  // DISP_CHANGE_SUCCESSFUL: the canvas is the display
+// DISP_CHANGE_SUCCESSFUL: the canvas is the display. The mode's size becomes the client area
+// (DEVMODEA dmPelsWidth/dmPelsHeight at 108/112), as for a fullscreen window covering the screen.
+HLE_STDCALL(kDll, ChangeDisplaySettingsA, 2) {
+  uint32_t dm = arg(c, 0);
+  if (dm && ld32(dm + 108) && ld32(dm + 112)) rt::user32_fullscreen_size((int)ld32(dm + 108), (int)ld32(dm + 112));
+  return 0;
+}
 HLE_STDCALL(kDll, ClipCursor, 1) { return 1; }
 HLE_STDCALL(kDll, DestroyWindow, 1) { return 1; }
 HLE_STDCALL(kDll, GetClassInfoExA, 3) { return 0; }  // not registered: the game registers its class afterwards
@@ -771,12 +793,45 @@ HLE_STDCALL(kDll, GetKeyboardState, 1) {
   return 1;
 }
 
-// Key names for the bindings screen: letters/digits from the virtual key, the rest generic.
+// Key names for the bindings screen, as Windows (US) names them; lParam bits 16-23 scan code, bit 24 extended.
+static const char* key_name(uint32_t sc, bool ext) {
+  if (ext) {
+    switch (sc) {
+      case 0x1c: return "Num Enter";
+      case 0x1d: return "Right Ctrl";
+      case 0x35: return "Num /";
+      case 0x38: return "Right Alt";
+      case 0x47: return "Home";
+      case 0x48: return "Up";
+      case 0x49: return "Page Up";
+      case 0x4b: return "Left";
+      case 0x4d: return "Right";
+      case 0x4f: return "End";
+      case 0x50: return "Down";
+      case 0x51: return "Page Down";
+      case 0x52: return "Insert";
+      case 0x53: return "Delete";
+    }
+    return nullptr;
+  }
+  static const char* const names[0x59] = {
+      nullptr, "Esc", nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, "-", "=", "Backspace", "Tab",
+      nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, "[", "]", "Enter", "Ctrl", nullptr, nullptr,
+      nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, ";", "'", "`", "Shift", "\\", nullptr, nullptr, nullptr, nullptr,
+      nullptr, nullptr, nullptr, ",", ".", "/", "Right Shift", "Num *", "Alt", "Space", "Caps Lock", nullptr, nullptr, nullptr, nullptr, nullptr,
+      nullptr, nullptr, nullptr, nullptr, nullptr, "Num Lock", "Scroll Lock", "Num 7", "Num 8", "Num 9", "Num -", "Num 4", "Num 5", "Num 6", "Num +", "Num 1",
+      "Num 2", "Num 3", "Num 0", "Num Del", nullptr, nullptr, nullptr, nullptr, nullptr};
+  return sc < 0x59 ? names[sc] : nullptr;
+}
+
 HLE_STDCALL(kDll, GetKeyNameTextA, 3) {
-  uint32_t vk = map_virtual_key((arg(c, 0) >> 16) & 0xff, 1);
-  std::string n = (vk >= '0' && vk <= '9') || (vk >= 'A' && vk <= 'Z') ? std::string(1, (char)vk)
-                  : vk >= 0x70 && vk <= 0x87 ? "F" + std::to_string(vk - 0x6f)
-                                             : "Key " + std::to_string((arg(c, 0) >> 16) & 0xff);
+  uint32_t sc = (arg(c, 0) >> 16) & 0xff;
+  uint32_t vk = map_virtual_key(sc, 1);
+  const char* named = key_name(sc, (arg(c, 0) >> 24) & 1);
+  std::string n = named                                                  ? named
+                  : (vk >= '0' && vk <= '9') || (vk >= 'A' && vk <= 'Z') ? std::string(1, (char)vk)
+                  : vk >= 0x70 && vk <= 0x87                             ? "F" + std::to_string(vk - 0x6f)
+                                                                         : "Key " + std::to_string(sc);
   uint32_t buf = arg(c, 1), size = arg(c, 2);
   if (!size) return 0;
   n = n.substr(0, size - 1);

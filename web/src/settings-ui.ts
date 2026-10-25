@@ -22,6 +22,12 @@ export class SettingsPanel {
         (err: unknown) => ($("set-status").textContent = `Could not save: ${err instanceof Error ? err.message : String(err)}`),
       );
     });
+    const mouse = $<HTMLInputElement>("set-mouse");
+    mouse.addEventListener("input", () => {
+      this.prefs.mouseSpeed = Number(mouse.value);
+      $("set-mouse-value").textContent = `${mouse.value}×`;
+      savePrefs(this.prefs);
+    });
     $("settings-close").addEventListener("click", () => this.close());
     $("set-alias").addEventListener("click", () => this.startCapture());
     window.addEventListener("keydown", (e) => this.onKey(e), true);
@@ -36,6 +42,8 @@ export class SettingsPanel {
     if (![...res.options].some((o) => o.value === cur)) res.add(new Option(cur.replace("x", " × "), cur));
     res.value = cur;
     $("set-alias").textContent = keyLabel(this.prefs.pauseAlias);
+    $<HTMLInputElement>("set-mouse").value = String(this.prefs.mouseSpeed);
+    $("set-mouse-value").textContent = `${this.prefs.mouseSpeed}×`;
     $("set-status").textContent = "";
     $("settings-panel").hidden = false;
     $("play-panel").hidden = true;

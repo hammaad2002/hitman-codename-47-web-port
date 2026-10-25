@@ -76,9 +76,9 @@ export class Help {
     const alias = this.prefs.pauseAlias;
     const other: [string, string][] = [
       ["F1", "Show or hide this controls list (the game pauses meanwhile)"],
-      ["Arrow keys / numpad / WASD", "Move (the key scheme is set in the game's Options → Controls; the default scheme uses the numeric keypad)"],
-      ["Space", "Use / open doors and pick things up; confirm choices in menus"],
-      ["Mouse", "Menus and aiming; click the game first to capture the mouse"],
+      ["Numpad 5 / 8 / 2", "Walk / run / walk backward (default scheme); Numpad 4 / 6 turn, 1 / 3 strafe, 7 / 9 lean, Enter acts"],
+      ["S / W / X", "Walk / run / walk backward after picking Load default \"WSAD\" in the game's Options → Mouse & Keyboard; A / D turn, Z / C strafe, Q / E lean, Space acts"],
+      ["Mouse", "Menus and aiming; click the game first to capture the mouse (speed: Settings on the start page, or the game's own Mouse speed)"],
       ["Esc", "Pause and open the in-game menu"],
       ["Arrow keys, Enter, Esc", "Navigate menus when a list or dialog is open"],
     ];

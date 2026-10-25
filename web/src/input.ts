@@ -19,6 +19,8 @@ export interface InputOptions {
   pauseAlias: string;
   /** Lock the pointer on click: the game hides the system cursor and moves its own from raw DirectInput motion. */
   mouseCapture: boolean;
+  /** Gain on relative mouse motion (Prefs.mouseSpeed). */
+  mouseSpeed: number;
   /** F1: show or hide the controls list. */
   onHelp?: () => void;
 }
@@ -31,6 +33,7 @@ export class Input {
   private readonly swallowed = new Set<number>();
   /** While suspended (an overlay is open) the game gets no input and is told it lost focus. */
   private suspended = false;
+  private lockRefused = false;
   /** Last pointer position in client space; integrated from motion while the pointer is locked. */
   private locked: [number, number] = [400, 300];
 
@@ -41,14 +44,12 @@ export class Input {
     window.addEventListener("keydown", (e) => this.key(e, true));
     window.addEventListener("keyup", (e) => this.key(e, false));
     canvas.addEventListener("mousemove", (e) => {
-      // The game draws its own cursor in menus and hides the system one (cursor: none) while playing.
-      if (this.pointerLocked && canvas.style.cursor !== "none") document.exitPointerLock();
       const [x, y] = this.pos(e);
       // Relative motion in the game's client units (fractions carry over): the game recentres the cursor
       // with SetCursorPos and reads motion from the distance to the centre, see platform_web.cpp.
       const [sx, sy] = this.scale();
-      this.rem[0] += e.movementX * sx;
-      this.rem[1] += e.movementY * sy;
+      this.rem[0] += e.movementX * sx * this.options.mouseSpeed;
+      this.rem[1] += e.movementY * sy * this.options.mouseSpeed;
       const dx = Math.trunc(this.rem[0]), dy = Math.trunc(this.rem[1]);
       this.rem[0] -= dx;
       this.rem[1] -= dy;
@@ -56,12 +57,17 @@ export class Input {
     });
     canvas.addEventListener("mousedown", (e) => {
       if (this.suspended) return;
-      // The click that captures the pointer is not a game click (mouse buttons may be bound to
-      // actions such as Attack).
-      if (this.options.mouseCapture && canvas.style.cursor === "none" && document.pointerLockElement !== canvas) {
-        this.swallowed.add(e.button);
+      // The game draws its own cursor everywhere (menus included) and moves it by relative motion
+      // (it recentres with SetCursorPos), so the system pointer is always captured: otherwise the two
+      // drift apart and the pointer leaves the window. The capturing click is not a game click
+      // (mouse buttons may be bound to actions such as Attack).
+      if (this.options.mouseCapture && document.pointerLockElement !== canvas) {
         this.lockPointer();
-        return;
+        // After a refused lock, clicks go to the game (each one still retries the lock).
+        if (!this.lockRefused) {
+          this.swallowed.add(e.button);
+          return;
+        }
       }
       const [x, y] = this.pos(e);
       engine._web_mouse_button(button(e.button), 1, x, y);
@@ -73,6 +79,11 @@ export class Input {
     });
     canvas.addEventListener("wheel", (e) => engine._web_mouse_wheel(e.deltaY < 0 ? 1 : -1), { passive: true });
     canvas.addEventListener("contextmenu", (e) => e.preventDefault());
+    // Lock refused (browser policy, or a sandboxed frame): clicks must still reach the game.
+    document.addEventListener("pointerlockerror", () => (this.lockRefused = true));
+    document.addEventListener("pointerlockchange", () => {
+      if (this.pointerLocked) this.lockRefused = false;
+    });
     window.addEventListener("focus", () => {
       if (!this.suspended) engine._web_focus(1);
     });
