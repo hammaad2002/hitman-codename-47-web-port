@@ -616,6 +616,8 @@ async function main() {
   };
   const fail = (err: unknown) => {
     setState("error", "Something went wrong.");
+    // The black game layer would hide the message.
+    $("game").classList.remove("on");
     log(err instanceof Error ? `${err.message}\n${err.stack ?? ""}` : String(err), true);
   };
 
